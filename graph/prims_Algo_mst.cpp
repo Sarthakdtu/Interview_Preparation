@@ -9,12 +9,12 @@ using namespace std;
 typedef  long long ll;
 void sarthak()
 {
-	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
-	#ifndef ONLINE_JUDGE
-	    freopen("input.txt", "r", stdin);
-	    freopen("output.txt", "w", stdout);
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
         //freopen("error.txt", "w", stderr);
-	#endif
+    #endif
 }
  
 int main()
@@ -24,11 +24,11 @@ int main()
     cin>>v>>e;
     vector<pair<ll, ll> > graph[v];
     for(int i=0;i<e;i++){
-    	ll s, d, c;
-    	cin>>s>>d>>c;
-    	s--;d--;
-    	graph[s].push_back({c, d});
-    	graph[d].push_back({c, s});
+        ll s, d, c;
+        cin>>s>>d>>c;
+        s--;d--;
+        graph[s].push_back({c, d});
+        graph[d].push_back({c, s});
     }
 
     ll mst = 0;
@@ -40,23 +40,23 @@ int main()
 
     // pq.insert({source, 0});
     for(auto u: graph[source]){
-    	pq.insert(u);
+        pq.insert(u);
     }
     vis[source] = true;
     count++;
 
     while(count!=v){
-    	auto curr = *(pq.begin());
-    	pq.erase(pq.find(curr));
-    	source = curr.second;
-    	if(!vis[source]){
-    		for(auto u: graph[source]){
-    			pq.insert(u);
-    		}
-    		vis[source] = true;
-    		count++;
-    		mst += curr.first;
-    	}
+        auto curr = *(pq.begin());
+        pq.erase(pq.begin());
+        source = curr.second;
+        if(!vis[source]){
+            for(auto u: graph[source]){
+                pq.insert(u);
+            }
+            vis[source] = true;
+            count++;
+            mst += curr.first;
+        }
     }
     cout<<mst<<endl;
 
