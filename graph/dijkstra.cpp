@@ -33,7 +33,6 @@ int main()
     		s--;
     		d--;
     		adj[s].push_back({c, d});
-    		// adj[d].push_back({c, s});
     	}
     	cin>>s;
     	cin>>d;
@@ -46,9 +45,11 @@ int main()
     	int dist[v];
     	memset(dist, 100000, sizeof(dist));
     	memset(vis, false, sizeof(vis));
-    	dist[s] = 0;
-    	pq.insert({0, s});
     	bool ans = true;
+
+        dist[s] = 0;
+        pq.insert({0, s});
+
     	while(count!=v){
     		pair<int, int> p = *(pq.begin());
     		pq.erase(pq.begin());
@@ -59,7 +60,6 @@ int main()
     			dist[u] = cost_u;
     			vis[u] = true;
     			count++;
-    			// cout<<count;
     			for(int i = 0;i<adj[u].size();i++){
     				int v = adj[u][i].second;
     				int dist_uv = adj[u][i].first;
