@@ -38,13 +38,8 @@ int main()
     int count = 0;
     int source = 0;
 
-    // pq.insert({source, 0});
-    for(auto u: graph[source]){
-        pq.insert(u);
-    }
-    vis[source] = true;
-    count++;
-
+    pq.insert({source, 0});
+    
     while(count!=v){
         auto curr = *(pq.begin());
         pq.erase(pq.begin());
